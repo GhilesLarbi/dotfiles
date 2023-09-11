@@ -1,0 +1,77 @@
+#! /bin/sh
+
+# Define a file path to store the variable
+gap_file="/tmp/bsp_gap"
+polystate_file="/tmp/polybar-state"
+
+# Check if the persistent file exists
+if [ -e "$gap_file" ]; then
+  # If it exists, read the variable from the file
+  GAP=$(cat "$gap_file")
+else
+  # If it doesn't exist, set the initial value for the variable
+  touch $gap_file
+  save_state $BSP_GAP
+fi
+
+
+save_state() {
+	echo $1 > $gap_file
+	GAP=$1
+
+	if [ "$1" -eq 0 ]; then
+		bspc config window_gap 0
+	else
+		bspc config window_gap 6
+	fi
+
+}
+
+
+#function that takes a gap size as an argument and apply them to bspwm
+change_gap() {
+
+	if [ -e "$polystate_file" ]; then
+  		STATE=$(cat "$polystate_file")
+	else
+		STATE=1
+	fi
+
+	if [ $STATE -eq 1 ]; then
+		HEIGHT=$POLYBAR_HEIGHT
+	else
+		HEIGHT=0
+	fi
+
+	echo "$STATE"
+	echo "$HEIGHT"
+
+	bspc config top_padding				 $(($1 + $HEIGHT))
+	bspc config bottom_padding		     $1	
+	bspc config left_padding		  	 $1	
+	bspc config right_padding		  	 $1	
+	
+	bspc config top_monocle_padding  	-$1
+	bspc config bottom_monocle_padding  -$1
+	bspc config left_monocle_padding  	-$1	
+	bspc config right_monocle_padding  	-$1	
+}
+
+if echo "$1" | grep -q "^--gap$"; then
+	save_state $BSP_GAP
+
+elif echo "$1" | grep -q "^--gapless$"; then
+	save_state 0
+
+elif echo "$1" | grep -q "^--toggle$"; then
+	if [ "$GAP" -lt 20 ] ;then 
+		save_state $BSP_GAP
+	else
+		save_state 0
+	fi
+else
+	echo $GAP
+	return
+fi
+
+change_gap $GAP

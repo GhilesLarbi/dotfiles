@@ -1,0 +1,28 @@
+#partially complete the word and show all possible completions
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+#case insansitive completion
+set completion-ignore-case on
+#treat - and _ as equivalent when performing case-insensitive filename matching and completion
+set completion-map-case on
+
+
+#enable the history search mode
+"\C-k": history-search-backward
+"\C-j": history-search-forward
+
+# Color files by types
+# Note that this may cause completion text blink in some terminals (e.g. xterm).
+set colored-stats On
+# Append char to indicate type
+set visible-stats On
+# Mark symlinked directories
+set mark-symlinked-directories On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+
+
+#disable ctrl+c showing ^C
+set echo-control-characters off

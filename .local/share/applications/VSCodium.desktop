@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=VSCodium
+Comment=code/text editor
+Exec=/opt/VSCodium/codium
+Terminal=false
+Type=Application
+Icon=vscodium
+Categories=Development;
+StartupNotify=false

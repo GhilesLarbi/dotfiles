@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Play
+GenericName=Multimedia player
+Comment=play video and audio files using ffplay
+Keywords=audio,video;
+Type=Application
+Categories=Audio;Video;AudioVideo;
+MimeType=audio/mpeg;video/mp4;video/mpeg;
+Exec=play %F
+Terminal=false
+Icon=appimagekit-Jellyamp
+NoDisplay=true

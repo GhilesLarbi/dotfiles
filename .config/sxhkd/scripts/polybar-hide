@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Define a file path to store the variable
+polystate="/tmp/polybar-state"
+
+save_state() {
+	echo $1 > $polystate
+	STATE=$1
+}
+
+# Check if the persistent file exists
+if [ -e "$polystate" ]; then
+  # If it exists, read the variable from the file
+  STATE=$(cat "$polystate")
+else
+  # If it doesn't exist, set the initial value for the variable
+  touch $polystate
+  save_state 1
+fi
+
+
+
+BSP_TOP_PADDING=$(bspc config top_padding)
+BSP_CURRENT_PADDING=$(~/.config/sxhkd/scripts/bspwm-gap)
+
+echo "$BSP_CURRENT_PADDING"
+
+if [ $STATE -eq 1 ]; then
+	save_state 0
+	bspc config top_padding	$BSP_CURRENT_PADDING 
+	polybar-msg cmd hide
+else
+	save_state 1
+	bspc config top_padding	$(($BSP_CURRENT_PADDING + $POLYBAR_HEIGHT))
+	polybar-msg cmd show
+fi
+
+

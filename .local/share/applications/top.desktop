@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Top
+GenericName=Top Process manager
+Comment=Manage running processes
+Keywords=task;kill;suspend;processor;memory;monitoring;performance;
+Type=Application
+Categories=System;Monitor;
+Exec=top
+Terminal=true
+Icon=utilities-system-monitor

@@ -1,0 +1,47 @@
+#! /bin/sh
+
+
+# utilitites
+is_program_exist() {
+    if command -v "$1" >/dev/null 2>&1; then
+        return 0
+    fi
+	return 1
+}
+
+is_program_running() {
+	if pgrep -x "$1" > /dev/null; then
+		return 0
+	fi
+	return 1
+}
+
+exec_once() {
+	if is_program_exist "$1"; then
+		if is_program_running "$1"; then 
+			return 0
+		fi
+		killall -q $1
+		pgrep -x $1 > /dev/null || $1 &
+	fi
+}
+
+#set default cursor
+xsetroot -cursor_name left_ptr
+
+#start sxhkd
+exec_once "sxhkd"
+
+#launch polybar
+exec_once "polybar"
+
+#launch picom
+#exec_once "picom"
+
+#set a wallpaper
+if is_program_exist "feh"; then
+	feh --bg-fill ~/.config/bspwm/wallpapers/back1.jpg &
+fi
+
+
+

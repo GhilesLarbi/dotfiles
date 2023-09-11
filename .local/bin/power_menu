@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Define the options for the Rofi menu
+options=" Power Off
+ Reboot
+ Logout"
+
+# Use Rofi to display the menu and get the user's choice
+choice=$(echo "$options" | rofi -dmenu -p "Select an option:" -location 3 -theme-str '#window {x-offset: -8; y-offset: 34; width:12%;} inputbar {enabled : false;}')
+
+# Perform the selected action based on the user's choice 
+case "$choice" in
+    " Power Off")
+        poweroff
+        ;;
+    " Reboot")
+        reboot
+        ;;
+    " Logout")
+        bspc quit
+        ;;
+    *)
+        echo "Invalid choice"
+        ;;
+esac
+

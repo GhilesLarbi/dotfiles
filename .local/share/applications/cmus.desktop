@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Cmus
+GenericName=music player
+Comment=music player
+Keywords=audio;
+Type=Application
+Categories=Audio;
+MimeType=audio/mpeg;
+Exec=cmus %F
+Terminal=true
+Icon=appimagekit-Jellyamp

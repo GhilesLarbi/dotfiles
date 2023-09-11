@@ -1,0 +1,5 @@
+Section "OutputClass"
+     Identifier "AMD"
+     MatchDriver "amdgpu"
+     Driver "amdgpu"
+EndSection

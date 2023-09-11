@@ -1,0 +1,43 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <VIDEO_FILE>"
+	rofi -e "There is no file to play"
+    exit 1
+fi
+
+FILE="$1"
+FILE_TYPE=$(ffprobe -loglevel error -show_entries stream=codec_type -of default=nw=1 "$FILE")
+
+if echo "$FILE_TYPE" | grep -q "codec_type=video"; then
+    FILE_TYPE="video"
+	SHOW_MODE="video"
+	LOOP=1
+elif echo "$FILE_TYPE" | grep -q "codec_type=audio"; then
+    FILE_TYPE="audio"
+	SHOW_MODE="waves"
+	LOOP=0
+else
+	return
+fi
+
+
+DURATION=$(ffprobe -i "$FILE" -show_entries format=duration -v quiet -of csv="p=0")
+DURATION=$(echo "$DURATION" | cut -d. -f1) 
+
+if echo "$DURATION" | grep -q "^[0-9]\+$"; then
+	hours=$((DURATION / 3600))
+	minutes=$(( (DURATION % 3600) / 60 ))
+	seconds=$((DURATION % 60))
+
+	FORMATED_DURATION=$(printf "%02d:%02d:%02d" "$hours" "$minutes" "$seconds")
+else
+	FORMATED_DURATION="00:00:00"
+fi
+
+
+echo " Duration: $FORMATED_DURATION"
+FF_FORMATED_DURATION=$(echo "$FORMATED_DURATION" | sed 's/:/\\:/g')
+
+#-autoexit 
+ffplay -i "$FILE" -vf "drawtext=text='%{pts\:gmtime\:0\:%H\\\\\:%M\\\\\:%S} / $FF_FORMATED_DURATION':fontsize=24:fontcolor=white:box=1:boxborderw=6:boxcolor=black@0.35:x=(w-text_w)/2:y=h-text_h-20" -v quiet -stats -loop "$LOOP" -showmode "$SHOW_MODE" -autoexit
