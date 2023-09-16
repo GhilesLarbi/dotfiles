@@ -36,7 +36,7 @@ exec_once "sxhkd"
 exec_once "polybar"
 
 #launch picom
-#exec_once "picom"
+exec_once "picom" 
 
 #set a wallpaper
 if is_program_exist "feh"; then

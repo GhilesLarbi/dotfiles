@@ -1,5 +1,5 @@
 configuration {
-  display-drun: "Applications:";
+  display-drun: " ";
   display-window: "Windows:";
   drun-display-format: "{icon} {name}";
   drun-show-actions: false;
@@ -11,3 +11,4 @@ configuration {
 }
 
 @theme "launcher"
+

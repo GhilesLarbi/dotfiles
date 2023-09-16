@@ -46,11 +46,12 @@ set cursorpreviewfmt "\033[7;2m"
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
-		application/pdf) lf -remote "send $id \$zathura \$fx";;
+		application/pdf) lf -remote "send $id \$firefox \$fx";;
 		application/*) lf -remote "send $id \$$EDITOR \$fx";;
 		#image/*) lf -remote "send $id \$feh --geometry 900x600 --scale-down --no-menus \$fx";;
-		image/*) feh --geometry 900x600 --scale-down --no-menus $fx;;
+		image/*) feh --scale-down --no-menus $fx;;
 		video/*) lf -remote "send $id \$play \$fx";;
+		audio/*) lf -remote "send $id \$play \$fx";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}

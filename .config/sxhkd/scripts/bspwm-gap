@@ -22,7 +22,7 @@ save_state() {
 	if [ "$1" -eq 0 ]; then
 		bspc config window_gap 0
 	else
-		bspc config window_gap 6
+		bspc config window_gap $BSP_WINDOW_GAP
 	fi
 
 }

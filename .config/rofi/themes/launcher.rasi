@@ -17,8 +17,9 @@ window {
   width: 30%;
   background-color: @bg;
   border: 2px;
-  border-color: #777;
+  border-color: #555;
   border-radius: 0px;
+  padding: 25px;
 }
 
 element {
@@ -45,14 +46,17 @@ element-icon {
 }
 
 entry {
-  padding: 12;
-  background-color: @bg-alt;
+  padding: 10;
+  background-color: inherit;
   text-color: @fg;
 }
 
 inputbar {
   children: [prompt, entry];
   background-color: @bg;
+  border: 0 0 1 0;
+  border-color: #555;
+  margin: 0 0 20 0;
 }
 
 listview {
@@ -68,8 +72,8 @@ mainbox {
 
 prompt {
   enabled: true;
-  padding: 12 0 0 12;
-  background-color: @bg-alt;
+  padding: 10 0 0 10;
+  background-color: inherit;
   text-color: @fg;
 }
 

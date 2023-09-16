@@ -5,8 +5,6 @@ local term_opts = { silent = true }
 -- local keymap = vim.api.nvim_set_keymap
 local keymap = vim.keymap.set
 
-
-
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -42,7 +40,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode

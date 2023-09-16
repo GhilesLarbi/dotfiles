@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Get the current tty
-#current_tty=$(tty | sed 's/\/dev\///')
+#remap capslock key to escape
+#setxkbmap -option "caps:escape_shifted_capslock"
 
+#start bspwm
 exec bspwm
