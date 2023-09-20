@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#remap capslock key to escape
-#setxkbmap -option "caps:escape_shifted_capslock"
+#load .Xresources db
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 #start bspwm
 exec bspwm

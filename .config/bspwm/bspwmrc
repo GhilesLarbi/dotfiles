@@ -5,7 +5,7 @@
 ####################################
 
 export BSP_GAP=35
-export POLYBAR_HEIGHT=26
+export POLYBAR_HEIGHT=20
 export BSP_WINDOW_GAP=10
 
 ####################################
@@ -25,8 +25,8 @@ bspc config focused_border_color  "#555555"
 bspc config presel_feedback_color "#EEEEEE"
 
 bspc rule -a 'firefox:*:Picture-in-Picture' state=floating sticky=on
-#bspc rule -a firefox desktop='^2' 
 #bspc rule -a feh state=floating 
+#bspc rule -a firefox desktop='^2' 
 #bspc rule -a ffplay state=floating 
 
 #bspc rule -a Gimp desktop='^8' state=floating follow=on

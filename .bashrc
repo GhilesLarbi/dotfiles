@@ -7,7 +7,7 @@ alias ll='ls -gh'
 alias pacman='sudo pacman'
 alias grep='grep --color=auto'
 alias xclip='xclip -selection clipboard'
-alias feh='feh --geometry 900x600 --scale-down --no-menus'
+alias feh='feh --geometry 900x600 --scale-down --no-menus -B "#0a0e14"'
 alias vim='nvim'
 
 #change directory without cd
@@ -22,8 +22,7 @@ function parse_git_dirty {
   [[ $(git status --porcelain 2> /dev/null) ]] && echo "*"
 }
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ ( \1$(parse_git_dirty))/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/  \1$(parse_git_dirty)/"
 }
-#export PS1="\n\[\e[38;5;249m\]\[\e[0m\]\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "
-#export PS1="\n\[\e[38;5;249m\]\[\e[0m\]\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "
-export PS1="\n\[\e[0m\]\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "
+#export PS1="\n\[\e[38;5;249m\]\[\e[0m\]\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "
+export PS1="\n\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "

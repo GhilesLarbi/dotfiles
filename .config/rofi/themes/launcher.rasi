@@ -5,7 +5,8 @@
 
   fg: #B3B1AD;
   fg-alt: #707880;
-
+  
+  blue: #53BDFA;
   
   border: 0;
   margin: 0;
@@ -14,29 +15,26 @@
 }
 
 window {
+  transparency: "screenshot";
   width: 30%;
   background-color: @bg;
   border: 2px;
   border-color: #555;
   border-radius: 0px;
-  padding: 25px;
+  padding: 10px;
 }
 
 element {
   padding: 8 12;
+  border-radius: 0;
   background-color: transparent;
   text-color: @fg-alt;
+  children: [element-icon, element-text ];
 }
 
 element selected {
   text-color: @fg;
   background-color: @bg-selected;
-}
-
-element-text {
-  background-color: transparent;
-  text-color: inherit;
-  vertical-align: 0.5;
 }
 
 element-icon {
@@ -45,19 +43,12 @@ element-icon {
   background-color: transparent;
 }
 
-entry {
-  padding: 10;
-  background-color: inherit;
-  text-color: @fg;
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5;
 }
 
-inputbar {
-  children: [prompt, entry];
-  background-color: @bg;
-  border: 0 0 1 0;
-  border-color: #555;
-  margin: 0 0 20 0;
-}
 
 listview {
   background-color: @bg;
@@ -70,13 +61,38 @@ mainbox {
   background-color: @bg;
 }
 
+
+inputbar {
+  children: [prompt, textbox-prompt-prefix, entry];
+  padding: 0 0 10 0;
+  background-color: inherit;
+
+  border: 0 0 1 0;
+  border-color: #555;
+  margin: 10 0 20 0;
+}
+
 prompt {
-  enabled: true;
-  padding: 10 0 0 10;
+  padding: 0 20 0 20 ;
+  expand: false;
+  background-color: @blue;
+  text-color: @bg;
+}
+
+textbox-prompt-prefix {
+  content: "";
+  padding: 0;
+  margin: 0 10 0 0; 
+  expand: false;
+  text-color: @blue; 
+  background-color: inherit;
+}
+
+entry {
+  expand: true;
+  padding: 0 0;
   background-color: inherit;
   text-color: @fg;
 }
 
 /* vim: ft=sass
-
-
