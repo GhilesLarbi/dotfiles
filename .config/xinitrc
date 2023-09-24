@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#load .Xresources db
+[[ -f ~/.config/Xresources ]] && xrdb -merge -I$HOME ~/.config/Xresources
+
+#start bspwm
+exec bspwm

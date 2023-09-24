@@ -24,5 +24,23 @@ function parse_git_dirty {
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/  \1$(parse_git_dirty)/"
 }
-#export PS1="\n\[\e[38;5;249m\]\[\e[0m\]\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "
-export PS1="\n\[\e[48;5;249m\] \[\e[38;5;236m\]\t \w\$(parse_git_branch) \[\033[00m\] "
+
+#return red if root, blue otherwise
+function prefix_color {
+	SIDE=48 #background
+	if [[ $1 == "FOREGROUND" ]]; then
+		SIDE=38
+	fi
+
+	if [[ $(whoami) == "root" ]]; then
+		echo "\[\e[$SIDE;5;1m\]"
+	else
+		echo "\[\e[$SIDE;5;4m\]"
+	fi
+}
+
+pacman-art
+
+export PS1="\n$(prefix_color "BACKGROUND")\[\e[38;5;236m\]   \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
+#export PS1="\n\[\e[48;5;4m\] \[\e[38;5;236m\]  \[\033[00m\]\[\e[38;5;4m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\]\[\e[38;5;249m\]\[\033[00m\] "
+

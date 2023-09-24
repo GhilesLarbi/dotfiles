@@ -1,6 +1,6 @@
 configuration {
-  display-drun: " ";
-  display-drun: "Applications";
+  display-drun: "";
+  display-drun: "Search";
   display-window: "Windows:";
   drun-display-format: "{icon} {name}";
   drun-show-actions: false;

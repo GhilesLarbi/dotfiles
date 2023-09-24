@@ -1,12 +1,13 @@
 * {
   bg: #0A0E14;
-  bg-alt: #585b7066;
-  bg-selected: #31324466;
+  bg-alt: #45475A;
 
   fg: #B3B1AD;
   fg-alt: #707880;
   
   blue: #53BDFA;
+  yellow: #F9AF4f;
+  green: #91B362;
   
   border: 0;
   margin: 0;
@@ -15,11 +16,18 @@
 }
 
 window {
+  /*
   transparency: "screenshot";
+  x-offset: 10px;
+  y-offset: 26px;
+  location: north west;
+  height: 97%;
+  */
+  transparency: "real";
   width: 30%;
   background-color: @bg;
   border: 2px;
-  border-color: #555;
+  border-color: @bg-alt;
   border-radius: 0px;
   padding: 10px;
 }
@@ -34,7 +42,7 @@ element {
 
 element selected {
   text-color: @fg;
-  background-color: @bg-selected;
+  background-color: #45475A22;
 }
 
 element-icon {
@@ -63,34 +71,71 @@ mainbox {
 
 
 inputbar {
-  children: [prompt, textbox-prompt-prefix, entry];
+  children: [textbox-powerline-1,textbox-powerline-2, textbox-powerline-3, textbox-powerline-4, prompt, textbox-powerline-5, entry];
   padding: 0 0 10 0;
   background-color: inherit;
 
   border: 0 0 1 0;
-  border-color: #555;
+  border-color: @bg-alt;
   margin: 10 0 20 0;
 }
 
-prompt {
-  padding: 0 20 0 20 ;
+textbox-powerline-1 {
+  content: "";
+  padding: 0;
   expand: false;
-  background-color: @blue;
-  text-color: @bg;
+  text-color: @bg; 
+  background-color: @green;
+  font: "Hack Nerd font 16";
 }
 
-textbox-prompt-prefix {
+textbox-powerline-2 {
+  content: " 󰊠";
+  padding: 2 10 2 0;
+  expand: false;
+  text-color: @bg; 
+  background-color: @green;
+}
+
+textbox-powerline-3 {
+  content: "";
+  padding: 0;
+  expand: false;
+  text-color: @green; 
+  background-color: inherit;
+  font: "Hack Nerd font 16";
+}
+
+textbox-powerline-4 {
+  content: "";
+  padding: 0;
+  expand: false;
+  text-color: @inherit; 
+  background-color: @fg;
+  font: "Hack Nerd font 16";
+}
+
+prompt {
+  padding: 2 20 2 12 ;
+  expand: false;
+  background-color: @fg;
+  text-color: @bg;
+  font: "Hack Nerd font 12";
+}
+
+textbox-powerline-5 {
   content: "";
   padding: 0;
   margin: 0 10 0 0; 
   expand: false;
-  text-color: @blue; 
+  text-color: @fg; 
   background-color: inherit;
+  font: "Hack Nerd font 16";
 }
 
 entry {
   expand: true;
-  padding: 0 0;
+  padding: 2 0;
   background-color: inherit;
   text-color: @fg;
 }
