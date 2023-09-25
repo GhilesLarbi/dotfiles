@@ -8,6 +8,7 @@
   blue: #53BDFA;
   yellow: #F9AF4f;
   green: #91B362;
+  red: #EA6C73;
   
   border: 0;
   margin: 0;
@@ -32,43 +33,10 @@ window {
   padding: 10px;
 }
 
-element {
-  padding: 8 12;
-  border-radius: 0;
-  background-color: transparent;
-  text-color: @fg-alt;
-  children: [element-icon, element-text ];
-}
-
-element selected {
-  text-color: @fg;
-  background-color: #45475A22;
-}
-
-element-icon {
-  size: 14;
-  padding: 0 10 0 0;
-  background-color: transparent;
-}
-
-element-text {
-  background-color: transparent;
-  text-color: inherit;
-  vertical-align: 0.5;
-}
-
-
-listview {
-  background-color: @bg;
-  columns: 1;
-  lines: 10;
-}
-
 mainbox {
   children: [inputbar, listview];
   background-color: @bg;
 }
-
 
 inputbar {
   children: [textbox-powerline-1,textbox-powerline-2, textbox-powerline-3, textbox-powerline-4, prompt, textbox-powerline-5, entry];
@@ -110,7 +78,7 @@ textbox-powerline-4 {
   content: "";
   padding: 0;
   expand: false;
-  text-color: @inherit; 
+  text-color: inherit; 
   background-color: @fg;
   font: "Hack Nerd font 16";
 }
@@ -139,5 +107,51 @@ entry {
   background-color: inherit;
   text-color: @fg;
 }
+
+error-message {
+  background-color: @bg;
+  border: 2px;
+  border-color: @red;
+  padding: 20;
+}
+
+textbox {
+  background-color: inherit;
+  text-color: @red;
+}
+
+listview {
+  background-color: @bg;
+  columns: 1;
+  lines: 10;
+}
+
+element {
+  padding: 8 12;
+  border-radius: 0;
+  background-color: transparent;
+  text-color: @fg-alt;
+  children: [element-icon, element-text ];
+}
+
+element selected {
+  text-color: @fg;
+  background-color: #45475A22;
+}
+
+element-icon {
+  size: 14;
+  padding: 0 10 0 0;
+  background-color: transparent;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+
+
 
 /* vim: ft=sass

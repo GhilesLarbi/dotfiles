@@ -16,7 +16,33 @@ shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
 
-#PS1='[\u@\h \W]\$ '
+
+
+# Change working dir in shell to last dir in lf on exit (adapted from ranger).
+#
+# You need to either copy the content of this file to your shell rc file
+# (e.g. ~/.bashrc) or source this file directly:
+#
+#     LFCD="/path/to/lfcd.sh"
+#     if [ -f "$LFCD" ]; then
+#         source "$LFCD"
+#     fi
+#
+# You may also like to assign a key (Ctrl-O) to this command:
+#
+#     bind '"\C-o":"lfcd\C-m"'  # bash
+#     bindkey -s '^o' 'lfcd\n'  # zsh
+#
+
+lfcd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
+}
+
+alias lf='lfcd'
+
+
+
 
 function parse_git_dirty {
   [[ $(git status --porcelain 2> /dev/null) ]] && echo "*"
@@ -43,4 +69,3 @@ pacman-art
 
 export PS1="\n$(prefix_color "BACKGROUND")\[\e[38;5;236m\]   \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
 #export PS1="\n\[\e[48;5;4m\] \[\e[38;5;236m\]  \[\033[00m\]\[\e[38;5;4m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\]\[\e[38;5;249m\]\[\033[00m\] "
-
