@@ -1,14 +1,12 @@
 configuration {
-  display-drun: "";
-  display-drun: "Search";
-  display-window: "Windows:";
-  drun-display-format: "{icon} {name}";
-  drun-show-actions: false;
-  /* hover-select: true; */
-  modi: "window,drun";
-  show-icons: false;
-  fixed-num-lines: false;
+  //hover-select: true; 
+  //modi: "drun,window,run";
+  //display-drun: "";
+  //display-run: "";
+  //display-window: "󰑣";
+  //show-icons: false;
+  //fixed-num-lines: false;
   icon-theme: "Papirus-Dark";
 }
 
-@theme "launcher"
+@theme "sidebar"

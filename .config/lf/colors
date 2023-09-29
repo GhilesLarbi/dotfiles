@@ -1,50 +1,10 @@
-# vim:ft=dircolors
-# (This is not a dircolors file but it helps to highlight colors and comments)
-
-# default values from dircolors
-# (entries with a leading # are not implemented in lf)
-# #no     00              # NORMAL
-# fi      00              # FILE
-# #rs     0               # RESET
-# di      01;34           # DIR
-# ln      01;36           # LINK
-# #mh     00              # MULTIHARDLINK
-# pi      40;33           # FIFO
-# so      01;35           # SOCK
-# #do     01;35           # DOOR
-# bd      40;33;01        # BLK
-# cd      40;33;01        # CHR
-# or      40;31;01        # ORPHAN
-# #mi     00              # MISSING
-# su      37;41           # SETUID
-# sg      30;43           # SETGID
-# #ca     30;41           # CAPABILITY
-# tw      30;42           # STICKY_OTHER_WRITABLE
-# ow      34;42           # OTHER_WRITABLE
-# st      37;44           # STICKY
-# ex      01;32           # EXEC
-
-# default values from lf (with matching order)
-# ln      01;36   # LINK
-# or      31;01   # ORPHAN
-# tw      01;34   # STICKY_OTHER_WRITABLE
-# ow      01;34   # OTHER_WRITABLE
-# st      01;34   # STICKY
-# di      01;34   # DIR
-# pi      33      # FIFO
-# so      01;35   # SOCK
-# bd      33;01   # BLK
-# cd      33;01   # CHR
-# su      01;32   # SETUID
-# sg      01;32   # SETGID
-# ex      01;32   # EXEC
-# fi      00      # FILE
+ Colors for filenames in lf
 
 # file types (with matching order)
 ln      01;36   # LINK
 or      31;01   # ORPHAN
-tw      34      # STICKY_OTHER_WRITABLE
-ow      34      # OTHER_WRITABLE
+tw      38;5;47 # STICKY_OTHER_WRITABLE
+ow      38;5;47 # OTHER_WRITABLE
 st      01;34   # STICKY
 di      01;34   # DIR
 pi      33      # FIFO
@@ -56,7 +16,7 @@ sg      01;32   # SETGID
 ex      01;32   # EXEC
 fi      00      # FILE
 
-# archives or compressed (dircolors defaults)
+# archives or compressed
 *.tar   01;31
 *.tgz   01;31
 *.arc   01;31
@@ -71,6 +31,7 @@ fi      00      # FILE
 *.tzo   01;31
 *.t7z   01;31
 *.zip   01;31
+*.xpi   01;31
 *.z     01;31
 *.dz    01;31
 *.gz    01;31
@@ -104,58 +65,63 @@ fi      00      # FILE
 *.dwm   01;31
 *.esd   01;31
 
-# image formats (dircolors defaults)
-*.jpg   01;35
-*.jpeg  01;35
-*.mjpg  01;35
-*.mjpeg 01;35
-*.gif   01;35
-*.bmp   01;35
-*.pbm   01;35
-*.pgm   01;35
-*.ppm   01;35
-*.tga   01;35
-*.xbm   01;35
-*.xpm   01;35
-*.tif   01;35
-*.tiff  01;35
-*.png   01;35
-*.svg   01;35
-*.svgz  01;35
-*.mng   01;35
-*.pcx   01;35
-*.mov   01;35
-*.mpg   01;35
-*.mpeg  01;35
-*.m2v   01;35
-*.mkv   01;35
-*.webm  01;35
-*.ogm   01;35
-*.mp4   01;35
-*.m4v   01;35
-*.mp4v  01;35
-*.vob   01;35
-*.qt    01;35
-*.nuv   01;35
-*.wmv   01;35
-*.asf   01;35
-*.rm    01;35
-*.rmvb  01;35
-*.flc   01;35
-*.avi   01;35
-*.fli   01;35
-*.flv   01;35
-*.gl    01;35
-*.dl    01;35
-*.xcf   01;35
-*.xwd   01;35
-*.yuv   01;35
-*.cgm   01;35
-*.emf   01;35
-*.ogv   01;35
-*.ogx   01;35
+# image formats
+*.jpg   38;5;202
+*.JPG   38;5;202
+*.jpeg  38;5;202
+*.mjpg  38;5;202
+*.mjpeg 38;5;202
+*.jxl   38;5;202
+*.JXL   38;5;202
+*.webp  38;5;202
+*.gif   38;5;202
+*.bmp   38;5;202
+*.pbm   38;5;202
+*.pgm   38;5;202
+*.ppm   38;5;202
+*.tga   38;5;202
+*.xbm   38;5;202
+*.xpm   38;5;202
+*.tif   38;5;202
+*.tiff  38;5;202
+*.png   38;5;202
+*.svg   38;5;202
+*.svgz  38;5;202
+*.mng   38;5;202
+*.odg   38;5;202
+*.pcx   38;2;218;8;255
+*.mov   38;2;218;8;255
+*.mpg   38;2;218;8;255
+*.mpeg  38;2;218;8;255
+*.m2v   38;2;218;8;255
+*.mkv   38;2;218;8;255
+*.webm  38;2;218;8;255
+*.ogm   38;2;218;8;255
+*.mp4   38;2;218;8;255
+*.m4v   38;2;218;8;255
+*.mp4v  38;2;218;8;255
+*.vob   38;2;218;8;255
+*.qt    38;2;218;8;255
+*.nuv   38;2;218;8;255
+*.wmv   38;2;218;8;255
+*.asf   38;2;218;8;255
+*.rm    38;2;218;8;255
+*.rmvb  38;2;218;8;255
+*.flc   38;2;218;8;255
+*.avi   38;2;218;8;255
+*.fli   38;2;218;8;255
+*.flv   38;2;218;8;255
+*.gl    38;2;218;8;255
+*.dl    38;2;218;8;255
+*.xcf   38;2;218;8;255
+*.xwd   38;2;218;8;255
+*.yuv   38;2;218;8;255
+*.cgm   38;2;218;8;255
+*.emf   38;2;218;8;255
+*.ogv   38;2;218;8;255
+*.ogx   38;2;218;8;255
 
-# audio formats (dircolors defaults)
+# audio formats
 *.aac   00;36
 *.au    00;36
 *.flac  00;36
@@ -173,3 +139,62 @@ fi      00      # FILE
 *.spx   00;36
 *.xspf  00;36
 
+# other formats
+*.pdf    38;2;249;46;73
+*.PDF    38;2;249;46;73
+*.ps     38;2;249;46;73
+*.epub   38;2;249;46;73
+*.mobi   38;2;249;46;73
+*.ods    92
+*.xls    92
+*.XLS    92
+*.xlsx   92
+*.XLSX   92
+*.odt    94
+*.doc    94
+*.DOC    94
+*.docx   94
+*.DOCX   94
+*.odp    38;2;249;62;0
+*.ppt    38;2;249;62;0
+*.PPT    38;2;249;62;0
+*.pptx   38;2;249;62;0
+*.PPTX   38;2;249;62;0
+*.iso    38;5;221
+*.img    38;5;221
+*.py     38;5;220
+*.lua    38;5;39
+*.js     38;5;226
+*.htm    38;5;202
+*.html   38;5;202
+*.shtml  38;5;202
+*.xhtml  38;5;202
+*.css    38;5;39
+*.go     38;5;39
+*.php    38;5;75
+*.tex    38;5;36
+*.c      38;2;121;168;244
+*.cpp    38;2;141;116;244
+*.cs     38;2;203;121;244
+*.nim    38;5;220
+*.nims   38;5;220
+*.r      38;5;39
+*.R      38;5;39
+*.rs     38;2;225;105;0
+*.pl     38;2;0;115;255
+*.raku   38;2;225;0;221
+*.m      38;2;225;43;7
+*.java   38;2;225;136;0
+*.scala  38;5;196
+*.rb     38;5;196
+*.vim    32
+*.sql    38;5;249
+*.sqlite 38;5;249
+*.db     38;5;249
+*.odb    38;5;249
+*.apk    38;5;82
+*.apk    38;5;82
+*.jl     38;5;147
+*.hs     38;5;133
+*.lhs    38;5;133
+*.blend  38;5;208

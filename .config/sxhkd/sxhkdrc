@@ -106,7 +106,8 @@ super + ctrl + shift + space
 
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+	STEP=20; SELECTION={1,2,3,4}; \
+	bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
 
 
 # Expand/contract a window by moving one of its side outward/inward

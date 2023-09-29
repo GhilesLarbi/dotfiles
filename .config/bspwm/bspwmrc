@@ -1,41 +1,56 @@
-#! /bin/sh
+#!/bin/sh
 
-####################################
-######### ENV vars #################
-####################################
+bspc monitor -d 1 2 3 4 5
 
-export BSP_GAP=35
-export POLYBAR_HEIGHT=20
-export BSP_WINDOW_GAP=10
+# set some defaults variables
+BSP_GAP=30
+POLYBAR_HEIGHT=36
+BSP_WINDOW_GAP=20
 
-####################################
-bspc monitor -d 1 2 3 4 5 
 
-#add gaps around the screen
+# Define a file path to store the variable
+bsp_gap_file="/tmp/BSP_GAP"
+echo $BSP_GAP > $bsp_gap_file
+
+polybar_height_file="/tmp/POLYBAR_HEIGHT"
+echo $POLYBAR_HEIGHT > $polybar_height_file
+
+bsp_window_gap_file="/tmp/BSP_WINDOW_GAP"
+echo $BSP_WINDOW_GAP > $bsp_window_gap_file
+
+
+#set gaps
 ~/.config/sxhkd/scripts/bspwm-gap --gap
 
-bspc config border_width          2
 
-bspc config split_ratio           0.50
-bspc config borderless_monocle    false
-bspc config gapless_monocle       true
-bspc config focus_follows_pointer true
-bspc config focused_border_color  "#45475A" 
-bspc config normal_border_color   "#1F2430"
-#bspc config focused_border_color  "#999999"
-bspc config presel_feedback_color "#EEEEEE"
 
-bspc rule -a 'firefox:*:Picture-in-Picture' state=floating sticky=on
-#bspc rule -a feh state=floating 
-#bspc rule -a firefox desktop='^2' 
-#bspc rule -a ffplay state=floating 
+# get Xresourses colors
+BACKGROUND=$(xrdb -query | grep "background-clr" | cut -f 2)
+BACKGROUND_DIM=$(xrdb -query | grep "background-dim-clr" | cut -f 2)
+FOREGROUND=$(xrdb -query | grep "foreground-clr" | cut -f 2)
+FOREGROUND_DIM=$(xrdb -query | grep "foreground-dim-clr" | cut -f 2)
 
-#bspc rule -a Gimp desktop='^8' state=floating follow=on
-#bspc rule -a mplayer2 state=floating
-#bspc rule -a Kupfer.py focus=on
-#bspc rule -a Screenkey manage=off
+BLACK=$(xrdb -query | grep "black-clr" | cut -f 2)
+RED=$(xrdb -query | grep "red-clr" | cut -f 2)
+GREEN=$(xrdb -query | grep "green-clr" | cut -f 2)
+YELLOW=$(xrdb -query | grep "yellow-clr" | cut -f 2)
+BLUE=$(xrdb -query | grep "blue-clr" | cut -f 2)
+MAGENTA=$(xrdb -query | grep "magenta-clr" | cut -f 2)
+CYAN=$(xrdb -query | grep "cyan-clr" | cut -f 2)
+WHITE=$(xrdb -query | grep "white-clr" | cut -f 2)
 
 
 
-# launch autostart programs
-exec $HOME/.config/bspwm/autostart
+#set some bsp configs
+bspc config border_width 		  0
+bspc config split_ratio           0.5
+bspc config borderless_monocle    true
+bspc config gapless_monocle       false
+
+bspc config focused_border_color  "$BACKGROUND_DIM"
+bspc config normal_border_color   "$BACKGROUND"
+bspc config presel_feedback_color "$WHITE"
+
+bspc config focus_follows_pointer  false
+
+exec ~/.config/bspwm/autostart

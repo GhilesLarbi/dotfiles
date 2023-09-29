@@ -1,17 +1,8 @@
-configuration {
-  hover-select: false; 
-  modi: "drun,window,run";
-  display-drun: "";
-  display-run: "";
-  display-window: "󰑣";
-  //show-icons: false;
-  fixed-num-lines: false;
-}
-
 * {
   bg: #0A0E14;
   bg-alt: #45475A;
   bg-entry: #01060e;
+  bg-trans: #0A0E14e5;
 
   fg: #B3B1AD;
   fg-alt: #707880;
@@ -29,20 +20,17 @@ configuration {
 }
 
 window {
-  //transparency: "real";
+  fullscreen: true;
   transparency: "screenshot";
-  width: 30%;
-  background-color: transparent;
-  border: 0;
-  border-color: @bg-alt;
-  border-radius: 0;
+  background-color: @bg-trans;
+  padding: 80 20%;
 }
 
 mainbox {
-  //children: [contentbox];
   children: [contentbox, mode-switcher];
+  children: [contentbox];
   orientation: vertical;
-  background-color: inherit;
+  background-color: transparent;
   spacing: 10;
   padding: 10;
   // background-image: url("~/.config/bspwm/wallpapers/back2.jpg", both);
@@ -54,45 +42,16 @@ contentbox {
 }
 
 inputbar {
-  children: [textbox-left, inputbox, textbox-right];
   children: [inputbox];
-  background-color:inherit;
-  //padding: 10;
-  //border-radius: 10;
-  //border: 2;
-  //border-color: @bg-alt;
-  margin: 0 0 10 0;
-}
-
-textbox-left {
-  content: "";
-  content: "";
-  padding: 0;
-  expand: false;
-  text-color: @bg-entry; 
-  background-color: inherit;
-  font: "Hack Nerd font 30";
-}
-
-textbox-right {
-  content: "";
-  content: "";
-  padding: 0;
-  expand: false;
-  text-color: @bg-entry; 
-  background-color: inherit;
-  font: "Hack Nerd font 30";
-}
-
-inputbox {
-  orientation: horizontal;
   children: [prompt, entry];
-  background-color: @bg-entry;
+  orientation: horizontal;
   border: 2;
   border-color: @bg-alt;
   border-radius: 10;
+  background-color: transparent;
   padding: 16 0 16 0;
 }
+
 
 prompt {
   padding: 2 20 2 12 ;
@@ -124,42 +83,30 @@ textbox {
 }
 
 listview {
-  spacing: 0;
-  border: 2;
-  border-color: @bg-alt;
-  background-color: @bg;
+  spacing: 20;
+  //border: 2;
+  //border-color: @bg-alt;
+  margin: 10% 0;
+  background-color: transparent;
   border-radius: 10;
   padding: 10;
-  columns: 1;
-  lines: 8;
+  columns: 6;
+  fixed-columns: true;
+  fixed-lines: true;
+  lines: 1;
 }
 
 element {
+  width: 10;
   padding: 12 12;
-  background-color: transparent;
+  orientation: vertical;
+  background-color: #45475A33;
   text-color: @fg-alt;
   border-radius: 10;
-  children: [textbox-elml, element-icon, element-text, textbox-elmr ];
+  spacing: 10;
   children: [element-icon, element-text];
 }
 
-textbox-elml {
-  content: "what the hell is going on here";
-  padding: 0;
-  text-color: @bg-alt; 
-  background-color: @red;
-  font: "Hack Nerd font 30";
-}
-
-textbox-elmr {
-  content: "";
-  content: "";
-  padding: 0;
-  expand: false;
-  text-color: @bg-alt; 
-  background-color: @bg;
-  font: "Hack Nerd font 30";
-}
 
 element selected {
   text-color: @bg;
@@ -168,44 +115,39 @@ element selected {
 
 element-icon {
   expand: false;
-  size: 18;
+  size: 80;
   padding: 0 10 0 0;
   background-color: transparent;
-  text-color: red;
 }
 
 element-text {
   expand: true;
   background-color: transparent;
   text-color: inherit;
-  vertical-align: 0.5;
+  horizontal-align: 0.4;
 }
 
 
 mode-switcher {
   orientation: horizontal;
   spacing: 10;
-  padding: 0 ;
+  padding: 10 ;
   border-radius: 10;
   background-color: @bg;
-  background-color: transparent;
-  border: 0;
+  border: 2;
   border-color: @bg-alt;
 }
 
 button {
-  background-color: @bg;
+  background-color: #45475A33;
   text-color: @fg-alt;
   padding: 10;
-  border: 2;
-  border-color: @bg-alt;
   border-radius: 10;
 }
 
 button selected {
   text-color: @bg;
   background-color: @red;
-  border-color: @red;
 }
 
 /* vim: ft=sass

@@ -1,37 +1,61 @@
 #!/bin/sh
 
-# Define a file path to store the variable
-polystate="/tmp/polybar-state"
+#import default values
+default_bsp_gap_file="/tmp/BSP_GAP"
+DEFAULT_BSP_GAP=$(cat $default_bsp_gap_file)
 
+default_polybar_height_file="/tmp/POLYBAR_HEIGHT"
+DEFAULT_POLYBAR_HEIGHT=$(cat $default_polybar_height_file)
+
+default_bsp_window_gap_file="/tmp/BSP_WINDOW_GAP"
+DEFAULT_BSP_WINDOW_GAP=$(cat $default_bsp_window_gap_file)
+
+echo "default bsp gap $DEFAULT_BSP_GAP"
+echo "default polybar height $DEFAULT_POLYBAR_HEIGHT"
+echo "default bsp window gap $DEFAULT_BSP_WINDOW_GAP"
+
+
+# Define a file path to store the variable
+current_polystate_file="/tmp/polybar-state"
+if [ -e "$current_polystate_file" ]; then
+	# If it exists, read the variable from the file
+	CURRENT_POLYSTATE=$(cat "$current_polystate_file")
+else
+	# If it doesn't exist, set the initial value for the variable
+	# and create the file
+	echo 1 > $current_polystate_file
+	CURRENT_POLYSTATE=1
+fi
+echo "current polystate $CURRENT_POLYSTATE"
+
+
+current_bsp_gap_file="/tmp/bsp_gap"
+if [ -e "$current_bsp_gap_file" ]; then
+	# If it exists, read the variable from the file
+	CURRENT_BSP_GAP=$(cat "$current_bsp_gap_file")
+else
+	CURRENT_BSP_GAP=$DEFAULT_BSP_GAP
+fi
+
+echo "current bsp gap $CURRENT_BSP_GAP"
+echo "------------------------------------"
+
+
+
+
+# helper function
 save_state() {
-	echo $1 > $polystate
+	echo $1 > $current_polystate_file
 	STATE=$1
 }
 
-# Check if the persistent file exists
-if [ -e "$polystate" ]; then
-  # If it exists, read the variable from the file
-  STATE=$(cat "$polystate")
-else
-  # If it doesn't exist, set the initial value for the variable
-  touch $polystate
-  save_state 1
-fi
-
-
-
-BSP_TOP_PADDING=$(bspc config top_padding)
-BSP_CURRENT_PADDING=$(~/.config/sxhkd/scripts/bspwm-gap)
-
-echo "$BSP_CURRENT_PADDING"
-
-if [ $STATE -eq 1 ]; then
+if [ $CURRENT_POLYSTATE -eq 1 ]; then
 	save_state 0
-	bspc config top_padding	$BSP_CURRENT_PADDING 
+	bspc config top_padding	$CURRENT_BSP_GAP 
 	polybar-msg cmd hide
 else
 	save_state 1
-	bspc config top_padding	$(($BSP_CURRENT_PADDING + $POLYBAR_HEIGHT))
+	bspc config top_padding	$(($CURRENT_BSP_GAP + $DEFAULT_POLYBAR_HEIGHT))
 	polybar-msg cmd show
 fi
 

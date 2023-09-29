@@ -1,0 +1,29 @@
+configuration {
+  hover-select: true; 
+}
+
+@import "sidebar.rasi"
+
+window {
+	transparency: "screenshot";
+  	location: north east;
+	x-offset: -10;
+	y-offset: 40;
+	height: none;
+	width:10%;
+
+	border: 0;
+	border-color: @background-dim-trans;
+	border-radius: 10;
+}
+
+inputbar {
+	enabled : false;
+}
+
+
+mainbox {
+  children: [contentbox];
+  padding: 10;
+}
+

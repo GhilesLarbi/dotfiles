@@ -1,7 +1,14 @@
 #!/bin/sh
 
 #load .Xresources db
-[[ -f ~/.config/Xresources ]] && xrdb -merge -I$HOME ~/.config/Xresources
+
+# this line works only in bash
+#[[ -f ~/.config/Xresources ]] && xrdb -merge -I$HOME ~/.config/Xresources
+
+if [ -f "$HOME/.config/Xresources" ]; then
+    xrdb -merge -I"$HOME" "$HOME/.config/Xresources"
+fi
+
 
 #start bspwm
 exec bspwm

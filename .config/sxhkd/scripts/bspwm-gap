@@ -1,52 +1,60 @@
 #! /bin/sh
 
-# Define a file path to store the variable
-gap_file="/tmp/bsp_gap"
-polystate_file="/tmp/polybar-state"
+#import default values
+default_bsp_gap_file="/tmp/BSP_GAP"
+DEFAULT_BSP_GAP=$(cat $default_bsp_gap_file)
 
-# Check if the persistent file exists
-if [ -e "$gap_file" ]; then
-  # If it exists, read the variable from the file
-  GAP=$(cat "$gap_file")
+default_polybar_height_file="/tmp/POLYBAR_HEIGHT"
+DEFAULT_POLYBAR_HEIGHT=$(cat $default_polybar_height_file)
+
+default_bsp_window_gap_file="/tmp/BSP_WINDOW_GAP"
+DEFAULT_BSP_WINDOW_GAP=$(cat $default_bsp_window_gap_file)
+
+# Define a file path to store the variable
+current_bsp_gap_file="/tmp/bsp_gap"
+if [ -e "$current_bsp_gap_file" ]; then
+	# If it exists, read the variable from the file
+	CURRENT_BSP_GAP=$(cat "$current_bsp_gap_file")
 else
-  # If it doesn't exist, set the initial value for the variable
-  touch $gap_file
-  save_state $BSP_GAP
+	# If it doesn't exist, set the initial value for the variable
+	# and create the file
+	echo "$DEFAULT_BSP_GAP" > $current_bsp_gap_file
+	CURRENT_BSP_GAP=$DEFAULT_BSP_GAP
 fi
 
 
+current_polystate_file="/tmp/polybar-state"
+if [ -e "$current_polystate_file" ]; then
+	# If it exists, read the variable from the file
+	CURRENT_POLYSTATE=$(cat "$current_polystate_file")
+else
+	CURRENT_POLYSTATE=1
+fi
+
+
+# helper function
 save_state() {
-	echo $1 > $gap_file
-	GAP=$1
+	echo $1 > $current_bsp_gap_file
+	CURRENT_BSP_GAP=$1
 
 	if [ "$1" -eq 0 ]; then
 		bspc config window_gap 0
 	else
-		bspc config window_gap $BSP_WINDOW_GAP
+		bspc config window_gap $DEFAULT_BSP_WINDOW_GAP
 	fi
-
 }
+
 
 
 #function that takes a gap size as an argument and apply them to bspwm
 change_gap() {
-
-	if [ -e "$polystate_file" ]; then
-  		STATE=$(cat "$polystate_file")
+	if [ $CURRENT_POLYSTATE -eq 1 ]; then
+		CURRENT_POLYBAR_HEIGHT=$DEFAULT_POLYBAR_HEIGHT
 	else
-		STATE=1
+		CURRENT_POLYBAR_HEIGHT=0
 	fi
 
-	if [ $STATE -eq 1 ]; then
-		HEIGHT=$POLYBAR_HEIGHT
-	else
-		HEIGHT=0
-	fi
-
-	echo "$STATE"
-	echo "$HEIGHT"
-
-	bspc config top_padding				 $(($1 + $HEIGHT))
+	bspc config top_padding				 $(($1 + $CURRENT_POLYBAR_HEIGHT))
 	bspc config bottom_padding		     $1	
 	bspc config left_padding		  	 $1	
 	bspc config right_padding		  	 $1	
@@ -58,20 +66,20 @@ change_gap() {
 }
 
 if echo "$1" | grep -q "^--gap$"; then
-	save_state $BSP_GAP
+	save_state $DEFAULT_BSP_GAP
 
 elif echo "$1" | grep -q "^--gapless$"; then
 	save_state 0
 
 elif echo "$1" | grep -q "^--toggle$"; then
-	if [ "$GAP" -lt 20 ] ;then 
-		save_state $BSP_GAP
+	if [ "$CURRENT_BSP_GAP" -lt 2 ] ;then 
+		save_state $DEFAULT_BSP_GAP
 	else
 		save_state 0
 	fi
 else
-	echo $GAP
+	echo $CURRENT_BSP_GAP
 	return
 fi
 
-change_gap $GAP
+change_gap $CURRENT_BSP_GAP

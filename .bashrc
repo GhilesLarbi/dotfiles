@@ -1,21 +1,23 @@
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# change background color if root
+#if [[ $(whoami) == "root" ]]; then
+#	printf "%b" "\033]11;#EA6C73\007"
+#else 
+#	printf "%b"
+#fi
 
 #aliases
 alias ls='ls -AvX --group-directories-first --file-type --color=auto'
 alias ll='ls -gh'
-alias pacman='sudo pacman'
 alias grep='grep --color=auto'
+alias vim='nvim'
+alias pacman='sudo pacman'
 alias xclip='xclip -selection clipboard'
 alias feh='feh --geometry 900x600 --scale-down --no-menus -B "#0a0e14"'
-alias vim='nvim'
-
-#change directory without cd
-shopt -s autocd
-#correct some directories misspelling when cd
-shopt -s cdspell
-shopt -s dirspell
-
+#alias xcolor='xcolor -s clipboard'
 
 
 # Change working dir in shell to last dir in lf on exit (adapted from ranger).
@@ -41,7 +43,18 @@ lfcd () {
 
 alias lf='lfcd'
 
+# Get color support for 'less'
+export LESS="--RAW-CONTROL-CHARS"
 
+# Use colors for less, man, etc.
+[[ -f ~/.config/LESS_TERMCAP ]] && . ~/.config/LESS_TERMCAP
+
+
+#change directory without cd
+shopt -s autocd
+#correct some directories misspelling when cd
+shopt -s cdspell
+shopt -s dirspell
 
 
 function parse_git_dirty {
@@ -65,7 +78,7 @@ function prefix_color {
 	fi
 }
 
-pacman-art
+#pacman-art
+# █                   
 
-export PS1="\n$(prefix_color "BACKGROUND")\[\e[38;5;236m\]   \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
-#export PS1="\n\[\e[48;5;4m\] \[\e[38;5;236m\]  \[\033[00m\]\[\e[38;5;4m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\]\[\e[38;5;249m\]\[\033[00m\] "
+export PS1="\n$(prefix_color "FOREGROUND") $(prefix_color "BACKGROUND")\[\e[38;5;236m\]  \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "

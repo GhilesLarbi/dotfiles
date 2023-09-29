@@ -5,7 +5,8 @@ case "$1" in
 	#*.rar) unrar l "$1";;
 	#*.7z) 7z l "$1";;
 	#*.pdf) pdftotext "$1" -;;
-	*) head -n $3 $1 | nl -s " │  " -b a;;
+	*.png|*.jpg) jp2a $1;;
+	*) head -n $3 "$1" | nl -s " │  " -b a;;
 	#*) echo $1 $2 $3 $4 $5
 esac
 

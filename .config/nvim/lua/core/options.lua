@@ -6,10 +6,10 @@ local options = {
 	conceallevel = 0, -- so that `` is visible in markdown files
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
-	mouse = "a", -- allow the mouse to be used in neovim
+	mouse = "", -- allow the mouse to be used in neovim
 	pumheight = 10, -- pop up menu height
-	-- showmode = false, -- we don't need to see things like -- INSERT -- anymore
-	-- termguicolors = true, -- set term gui colors (most terminals support this)
+	showmode = false, -- we don't need to see things like -- INSERT -- anymore
+	termguicolors = true, -- set term gui colors (most terminals support this)
 	smartcase = true, -- smart case
 	smartindent = true, -- make indenting smarter again
 	splitbelow = true, -- force all horizontal splits to go below current window
@@ -23,7 +23,7 @@ local options = {
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 	wrap = false, -- display lines as one long line
 	scrolloff = 8, -- is one of my fav
-	sidescrolloff = 8, 
+	sidescrolloff = 8,
 }
 
 vim.opt.shortmess:append "c"

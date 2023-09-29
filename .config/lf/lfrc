@@ -12,8 +12,8 @@ set previewer ~/.config/lf/previewer
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;2m"
 
-set cursoractivefmt  "\033[7m "
-set cursorpreviewfmt "\033[7;2m "
+set cursoractivefmt  "\033[7m"
+set cursorpreviewfmt "\033[7;2m"
 
 set icons true
 #set preview false
@@ -41,7 +41,24 @@ set ifs "\n"
 set scrolloff 10
 
 
+set promptfmt "
+\033[48;2;35;38;39;38;2;28;220;156m 󰣇  
+\033[38;2;35;38;39;48;2;202;31;31m
+\033[38;2;202;31;31;48;2;40;47;62m
+\033[38;2;255;255;255m %w 
+\033[38;2;40;47;62;48;2;58;67;89m
+\033[38;2;255;255;255m %f 
+\033[;38;2;58;67;89;49m\033[m"
 
+set timefmt "02/01/2006 15:04:05 "
+set infotimefmtnew '02/01 15:04'
+set infotimefmtold '02/01/06'
+set errorfmt "\033[1;31m"
+set numberfmt "\033[38;2;75;87;116m"
+
+set cursorpreviewfmt "\033[7m"
+
+%test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
 
 ##############################################################
 #################  Commands ##################################
@@ -65,7 +82,21 @@ cmd open &{{
     esac
 }}
 
-cmd on-quit ${{
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/2 - 1)); tput bold
+	set -f
+	printf -- "%s\n" $fx | sed 's|'"$HOME"'| |'
+	printf "\033[1;33mAre you sure you wanna delete this file? \033[37m[\033[32my\033[37m/\033[31mN\033[37m]\033[m "
+	read -r REPLY
+	case "$REPLY" in
+		[yY]) rm -rf -- $fx ;;
+	esac
+}}
+
+
+cmd chmodx &{{
+	chmod u+x $fx
+	lf -remote "send $id reload"
 }}
 
 cmd q :quit
@@ -125,10 +156,6 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
-
-
-
-
 
 
 ##############################################################

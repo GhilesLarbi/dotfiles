@@ -17,12 +17,16 @@ is_program_running() {
 }
 
 exec_once() {
-	if is_program_exist "$1"; then
-		if is_program_running "$1"; then 
+	local PROGRAM="$1"
+	shift # Remove the first argument and shift the list
+	if is_program_exist "$PROGRAM"; then
+		echo $PROGRAM
+		if is_program_running "$PROGRAM"; then 
 			return 0
 		fi
-		killall -q $1
-		pgrep -x $1 > /dev/null || $1 &
+		echo $PROGRAM
+		killall -q "$PROGRAM"
+		pgrep -x "$PROGRAM" > /dev/null || "$PROGRAM" "$@" &
 	fi
 }
 
@@ -33,15 +37,10 @@ xsetroot -cursor_name left_ptr
 exec_once "sxhkd"
 
 #launch polybar
-exec_once "polybar"
+exec_once "polybar" -r
 
 #launch picom
 exec_once "picom" 
 
 #set a wallpaper
-if is_program_exist "feh"; then
-	feh --bg-fill ~/.config/bspwm/wallpapers/back1.jpg &
-fi
-
-
-
+exec_once "feh" --bg-fill ~/.config/bspwm/wallpapers/back1-fix.jpg

@@ -1,0 +1,206 @@
+configuration {
+  hover-select: false; 
+  modi: "drun,window,run";
+  display-drun: "";
+  display-run: "";
+  display-window: "󰑣";
+  //show-icons: false;
+  fixed-num-lines: false;
+}
+
+* {
+  background : #0A0E14;
+  background-dim : #45475A;
+  background-dim-trans : #45475A55;
+  foreground : #B3B1AD;
+  foreground-dim : #707880;
+  
+  black : #01060E;
+  red : #EA6C73;
+  green : #91B362;
+  yellow : #F9AF4F;
+  blue : #53BDFA;
+  magenta : #FAE994;
+  cyan : #90E1C6;
+  white : #C7C7C7;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+  background-color: transparent;
+}
+
+window {
+  transparency: "screenshot";
+  transparency: "real";
+  width: 22%;
+  height: calc(100% - 36);
+  height: 100%;
+  location: north west;
+  x-offset: 0;
+  y-offset: 36;
+  y-offset: 0;
+  background-color: @background;
+  background-color: #0A0E14ea;
+
+  border: 0 0 0 0;
+  border-color: @background-dim;
+  border-radius: 0;
+}
+
+mainbox {
+  children: [contentbox, controlbox];
+  orientation: vertical;
+  spacing: 10;
+  padding: 20;
+  // background-image: url("~/.config/bspwm/wallpapers/back2.jpg", both);
+}
+
+contentbox {
+  children: [inputbar, listview];
+  spacing: 20;
+}
+
+inputbar {
+  children: [textbox-left, inputbox, textbox-right];
+  margin: 10 0 0 0;
+}
+
+textbox-left, textbox-right {
+  padding: 0;
+  expand: false;
+  text-color: @foreground-dim; 
+  font: "Hack Nerd font 20";
+
+}
+
+// █                   
+
+textbox-left {
+  content: " "  ;
+}
+
+textbox-right {
+  content: "";
+}
+
+inputbox {
+  orientation: horizontal;
+  children: [prompt, entry];
+  spacing: 15;
+  background-color: @foreground-dim;
+  padding: 2 10;
+}
+
+prompt {
+  padding: 3 0;
+  expand: false;
+  text-color: @background;
+  font: "Hack Nerd font 12";
+}
+
+entry {
+  placeholder: "Search";
+  placeholder-color: @background-dim;
+  expand: true;
+  padding: 3 0;
+  text-color: @background;
+}
+
+error-message {
+  border: 0px;
+  border-color: @red;
+  border-radius: 10;
+  padding: 20;
+  margin: 20;
+}
+
+textbox {
+  text-color: @red;
+}
+
+listview {
+  spacing: 0;
+  columns: 1;
+  lines: 8;
+}
+
+element {
+  padding: 4;
+  text-color: @foreground-dim;
+  border-radius: 12;
+  children: [iconbox, element-text];
+  spacing: 10;
+  cursor: pointer;
+}
+
+element selected {
+  text-color: @foreground;
+  background-color: @background-dim-trans;
+}
+
+iconbox {
+  children: [element-icon];
+  expand: false;
+  padding: 6;
+  border-radius: 10;
+  background-color: inherit;
+}
+element-icon {
+  expand: false;
+  size: 18;
+  text-color: red;
+}
+
+element-text {
+  expand: true;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+controlbox {
+  children: [mode-switcher, flexbox, infobox];
+  orientation: horizontal;
+  expand: false;
+}
+
+mode-switcher {
+  orientation: horizontal;
+  spacing: 10;
+}
+
+button {
+  expand: false;
+  text-color: @background-dim;
+  padding: 10;
+  border-radius: 10;
+  cursor: pointer;
+}
+
+button selected {
+  text-color: @foreground;
+}
+
+flexbox {
+  expand: true;
+}
+
+infobox {
+  children: [num-filtered-rows, textbox-seperator, num-rows];
+  orientation: horizontal;
+  expand: false;
+}
+
+num-rows, num-filtered-rows, textbox-seperator {
+  padding: 10 0;
+  text-color: @foreground-dim;
+}
+
+num-filtered-rows {
+  text-color: @foreground;
+}
+
+textbox-seperator {
+  content: "/";
+}
