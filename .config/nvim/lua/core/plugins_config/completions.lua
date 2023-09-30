@@ -1,6 +1,18 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
+local cmp_status_ok, cmp = pcall(require, "cmp")
 
+if not cmp_status_ok then
+	vim.notify("cmp doesn't exist")
+	return
+end
+
+local luasnip_status_ok, luasnip = pcall(require, "luasnip")
+
+if not luasnip_status_ok then
+	vim.notify("luasnip doesn't exist")
+	return
+end
+
+-- vscode like snipets
 -- require("luasnip.loaders.from_vscode").lazy_load()
 
 -- helper function

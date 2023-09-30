@@ -2,4 +2,4 @@
 
 awk '/^[a-z]/ && last {print "<small>",$0,"\t",last,"</small>"} {last=""} /^#/{last=$0}' ~/.config/sxhkd/sxhkdrc |
     column -t -s $'\t' |
-    rofi -dmenu -i -markup-rows -no-show-icons -p "󰌌"
+    rofi -dmenu -i -markup-rows -no-show-icons -p "󰌌" -theme-str "window {width : 50%;} element {children:[element-text];}"

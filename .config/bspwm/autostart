@@ -20,11 +20,9 @@ exec_once() {
 	local PROGRAM="$1"
 	shift # Remove the first argument and shift the list
 	if is_program_exist "$PROGRAM"; then
-		echo $PROGRAM
 		if is_program_running "$PROGRAM"; then 
 			return 0
 		fi
-		echo $PROGRAM
 		killall -q "$PROGRAM"
 		pgrep -x "$PROGRAM" > /dev/null || "$PROGRAM" "$@" &
 	fi

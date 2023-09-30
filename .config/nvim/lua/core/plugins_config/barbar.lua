@@ -1,14 +1,18 @@
-require('barbar').setup({
---  -- WARN: do not copy everything below into your config!
---  --       It is just an example of what configuration options there are.
---  --       The defaults are suitable for most people.
---
+local status_ok, barbar = pcall(require, "barbar")
+if not status_ok then
+	vim.notify("barbar doesn't exist", vim.log.levels.INFO)
+	return
+end
+
+vim.g.barbar_auto_setup = false -- disable auto-setup
+
+barbar.setup({
 --  -- Enable/disable animations
---  animation = true,
+	animation = false,
 --
 --  -- Automatically hide the tabline when there are this many buffers left.
 --  -- Set to any value >=0 to enable.
---  auto_hide = false,
+	auto_hide = false,
 --
 --  -- Enable/disable current/total tabpages indicator (top right corner)
 --  tabpages = true,
@@ -16,7 +20,7 @@ require('barbar').setup({
 --  -- Enables/disable clickable tabs
 --  --  - left-click: go to buffer
 --  --  - middle-click: delete buffer
---  clickable = true,
+	clickable = false,
 --
 --  -- Excludes buffers from the tabline
 --  exclude_ft = {'javascript'},
@@ -38,44 +42,45 @@ require('barbar').setup({
 --  -- Enable highlighting visible buffers
 --  highlight_visible = true,
 --
---  icons = {
+	icons = {
 --    -- Configure the base icons on the bufferline.
 --    -- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
---    buffer_index = false,
---    buffer_number = false,
---    button = '',
+		buffer_index = false,
+		buffer_number = false,
+		button = '',
 --    -- Enables / disables diagnostic symbols
---    diagnostics = {
---      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = 'ﬀ'},
---      [vim.diagnostic.severity.WARN] = {enabled = false},
---      [vim.diagnostic.severity.INFO] = {enabled = false},
---      [vim.diagnostic.severity.HINT] = {enabled = true},
---    },
---    gitsigns = {
---      added = {enabled = true, icon = '+'},
---      changed = {enabled = true, icon = '~'},
---      deleted = {enabled = true, icon = '-'},
---    },
---    filetype = {
---      -- Sets the icon's highlight group.
---      -- If false, will use nvim-web-devicons colors
---      custom_colors = false,
---
---      -- Requires `nvim-web-devicons` if `true`
---      enabled = true,
---    },
---    separator = {left = '▎', right = ''},
---
+		-- diagnostics = {
+		-- 	[vim.diagnostic.severity.ERROR] = {enabled = true, icon = 'ﬀ'},
+		-- 	[vim.diagnostic.severity.WARN] = {enabled = false},
+		-- 	[vim.diagnostic.severity.INFO] = {enabled = false},
+		-- 	[vim.diagnostic.severity.HINT] = {enabled = true},
+		-- },
+
+		gitsigns = {
+			added = {enabled = true, icon = '+'},
+			changed = {enabled = true, icon = '~'},
+			deleted = {enabled = true, icon = '-'},
+		},
+
+		filetype = {
+			-- Sets the icon's highlight group.
+			-- If false, will use nvim-web-devicons colors
+			custom_colors = false,
+			-- Requires `nvim-web-devicons` if `true`
+			enabled = true,
+		},
+
+		separator = {left = '', right = ''},
 --    -- If true, add an additional separator at the end of the buffer list
---    separator_at_end = true,
---
+		separator_at_end = false,
+
 --    -- Configure the icons on the bufferline when modified or pinned.
 --    -- Supports all the base icon options.
---    modified = {button = '●'},
---    pinned = {button = '', filename = true},
---
+		modified = {button = '●'},
+		pinned = {button = '', filename = true},
+
 --    -- Use a preconfigured buffer appearance— can be 'default', 'powerline', or 'slanted'
---    preset = 'default',
+		preset = 'default',
 --
 --    -- Configure the icons on the bufferline based on the visibility of a buffer.
 --    -- Supports all the base icon options, plus `modified` and `pinned`.
@@ -83,7 +88,7 @@ require('barbar').setup({
 --    current = {buffer_index = true},
 --    inactive = {button = '×'},
 --    visible = {modified = {buffer_number = false}},
---  },
+	},
 --
 --  -- If true, new buffers will be inserted at the start/end of the list.
 --  -- Default is to insert after current buffer.
@@ -109,16 +114,16 @@ require('barbar').setup({
 --  semantic_letters = true,
 --
 --  -- Set the filetypes which barbar will offset itself for
---  sidebar_filetypes = {
---    -- Use the default values: {event = 'BufWinLeave', text = nil}
---    NvimTree = true,
---    -- Or, specify the text used for the offset:
---    undotree = {text = 'undotree'},
---    -- Or, specify the event which the sidebar executes when leaving:
---    ['neo-tree'] = {event = 'BufWipeout'},
---    -- Or, specify both
---    Outline = {event = 'BufWinLeave', text = 'symbols-outline'},
---  },
+	sidebar_filetypes = {
+		-- Use the default values: {event = 'BufWinLeave', text = nil}
+		NvimTree = true,
+		-- Or, specify the text used for the offset:
+		--undotree = {text = 'undotree'},
+		-- Or, specify the event which the sidebar executes when leaving:
+		--['neo-tree'] = {event = 'BufWipeout'},
+		-- Or, specify both
+		--Outline = {event = 'BufWinLeave', text = 'symbols-outline'},
+	},
 --
 --  -- New buffer letters are assigned in this order. This order is
 --  -- optimal for the qwerty keyboard layout but might need adjustment
@@ -129,3 +134,7 @@ require('barbar').setup({
 --  -- where X is the buffer number. But only a static string is accepted here.
 --  no_name_title = nil,
 })
+
+vim.keymap.set("n", "<C-p>", ":BufferMovePrevious<CR>", { noremap = true, silent = true})
+vim.keymap.set("n", "<C-n>", ":BufferMoveNext<CR>", { noremap = true, silent = true})
+vim.keymap.set("n", "<C-w>", ":BufferClose<CR>", { noremap = true, silent = true})

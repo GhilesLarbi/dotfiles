@@ -17,7 +17,6 @@ alias vim='nvim'
 alias pacman='sudo pacman'
 alias xclip='xclip -selection clipboard'
 alias feh='feh --geometry 900x600 --scale-down --no-menus -B "#0a0e14"'
-#alias xcolor='xcolor -s clipboard'
 
 
 # Change working dir in shell to last dir in lf on exit (adapted from ranger).

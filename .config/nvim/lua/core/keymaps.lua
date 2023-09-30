@@ -35,10 +35,58 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 --keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 -- Resize with Alt hjkl
-keymap("n", "<A-h>", ":resize +2<CR>", opts)
-keymap("n", "<A-j>", ":resize -2<CR>", opts)
-keymap("n", "<A-k>", ":vertical resize +2<CR>", opts)
-keymap("n", "<A-l>", ":vertical resize -2<CR>", opts)
+
+local function resize(side, amount)
+	local success, position = pcall(vim.api.nvim_win_get_position, 0)
+	if not success then
+		return
+	end
+
+	if side == "down" or side == "up" then
+		if position[1] == 1 then
+			print("top")
+			if side == "up" then
+				vim.cmd("resize -2")
+			elseif side == "down" then
+				vim.cmd("resize +2")
+			end
+		else
+			print(position[1])
+			if side == "up" then
+				vim.cmd("resize +2")
+			elseif side == "down" then
+				vim.cmd("resize -2")
+			end
+		end
+	else
+		if position[2] == 0 then
+			print("left")
+			if side == "left" then
+				vim.cmd("vertical resize -2")
+			elseif side == "right" then
+				vim.cmd("vertical resize +2")
+			end
+		else
+			print(position[2])
+			if side == "left" then
+				vim.cmd("vertical resize +2")
+			elseif side == "right" then
+				vim.cmd("vertical resize -2")
+			end
+		end
+	end
+end
+
+keymap("n", "<A-j>", function () resize("down", 2) end, opts)
+keymap("n", "<A-k>", function () resize("up", 2) end, opts)
+keymap("n", "<A-h>", function () resize("left", 2) end, opts)
+keymap("n", "<A-l>", function () resize("right", 2) end, opts)
+
+
+-- keymap("n", "<A-k>", ":resize +2<CR>", opts)
+-- keymap("n", "<A-j>", ":resize -2<CR>", opts)
+-- keymap("n", "<A-h>", ":vertical resize +2<CR>", opts)
+-- keymap("n", "<A-l>", ":vertical resize -2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)

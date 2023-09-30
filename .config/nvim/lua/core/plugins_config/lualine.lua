@@ -1,7 +1,18 @@
-local custom_theme = require("lualine.themes.iceberg_dark")
+local status_ok, lualine = pcall(require, "lualine")
+if not status_ok then
+	vim.notify("lualine doesn't exist", vim.log.levels.INFO)
+	return
+end
+
+local theme_status_ok, custom_theme = pcall(require, "lualine.themes.iceberg_dark")
+if not theme_status_ok then
+	vim.notify("lualine.theme doesn't exist", vim.log.levels.INFO)
+	return
+end
+
 custom_theme.normal.c.bg = "#0a0e14"
 
-require('lualine').setup({
+lualine.setup({
 	options = {
 		icons_enabled = true,
 		-- auto horizon iceberg_dark ayu_dark
