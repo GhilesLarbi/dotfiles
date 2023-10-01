@@ -163,7 +163,7 @@ textbox-elmr {
 
 element selected {
   text-color: @bg;
-  background-color: @blue;
+  background-color: @fg;
 }
 
 element-icon {
@@ -204,8 +204,8 @@ button {
 
 button selected {
   text-color: @bg;
-  background-color: @red;
-  border-color: @red;
+  background-color: @fg-alt;
+  border-color: @fg-alt;
 }
 
 /* vim: ft=sass

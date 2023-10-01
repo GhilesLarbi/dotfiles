@@ -1,7 +1,0 @@
-pcall( require, "core.plugins_config.nvim-tree")
-pcall( require, "core.plugins_config.lualine")
-pcall( require, "core.plugins_config.treesitter")
-pcall( require, "core.plugins_config.completions")
-pcall( require, "core.plugins_config.lsp_config")
-pcall( require, "core.plugins_config.barbar")
-pcall( require, "core.plugins_config.colorizer")

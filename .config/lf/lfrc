@@ -3,7 +3,7 @@
 
 # interpreter for shell commands
 set shell sh
-# set drawbox true
+set drawbox true
 set borderfmt "\033[0;90mm"
 set hidden  true
 set ratios 3:2
