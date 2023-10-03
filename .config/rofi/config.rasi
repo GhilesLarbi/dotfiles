@@ -7,6 +7,10 @@ configuration {
   //show-icons: false;
   //fixed-num-lines: false;
   icon-theme: "Papirus-Dark";
+  kb-accept-entry: "Return,KP_Enter";
+  kb-remove-to-eol: "";
+  kb-row-down: "Control-j";
+  kb-row-up: "Control-k";
 }
 
 @theme "sidebar"
