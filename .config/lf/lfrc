@@ -12,8 +12,8 @@ set previewer ~/.config/lf/previewer
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;2m"
 
-set cursoractivefmt  "\033[7m"
-set cursorpreviewfmt "\033[7;2m"
+set cursoractivefmt  "\033[7m"
+set cursorpreviewfmt "\033[7;2m"
 
 set icons true
 #set preview false
@@ -40,15 +40,21 @@ set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
 
+# 
+
+#set promptfmt "
+#\033[48;2;35;38;39;38;2;28;220;156m 󰣇 
+#\033[38;2;255;255;255m %w 
+#\033[38;2;40;47;62;48;2;58;67;89m
+#\033[38;2;255;255;255m %f  
+#\033[;38;2;58;67;89;49m\033[m"
 
 set promptfmt "
-\033[48;2;35;38;39;38;2;28;220;156m 󰣇  
-\033[38;2;35;38;39;48;2;202;31;31m
-\033[38;2;202;31;31;48;2;40;47;62m
+\033[48;2;35;38;39;38;2;28;220;156m 󰣇 
 \033[38;2;255;255;255m %w 
-\033[38;2;40;47;62;48;2;58;67;89m
-\033[38;2;255;255;255m %f 
-\033[;38;2;58;67;89;49m\033[m"
+\033[38;2;40;47;62;48;2;58;67;89m
+\033[38;2;255;255;255m %f  
+\033[;38;2;58;67;89;49m\033[m"
 
 set timefmt "02/01/2006 15:04:05 "
 set infotimefmtnew '02/01 15:04'

@@ -64,6 +64,7 @@ contentbox {
 
 inputbar {
   children: [textbox-left, inputbox, textbox-right];
+  children: [inputbox];
   margin: 10 0 0 0;
 }
 
@@ -78,7 +79,7 @@ textbox-left, textbox-right {
 // █                   
 
 textbox-left {
-  content: " "  ;
+  content: ""  ;
 }
 
 textbox-right {
@@ -90,6 +91,7 @@ inputbox {
   children: [prompt, entry];
   spacing: 15;
   background-color: @foreground-dim;
+  border-radius: 0;
   padding: 2 10;
 }
 
@@ -130,6 +132,7 @@ element {
   padding: 4;
   text-color: @foreground-dim;
   border-radius: 12;
+  border-radius: 0;
   children: [iconbox, element-text];
   spacing: 10;
   cursor: pointer;
@@ -145,6 +148,7 @@ iconbox {
   expand: false;
   padding: 6;
   border-radius: 10;
+  border-radius: 0;
   background-color: inherit;
 }
 element-icon {

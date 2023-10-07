@@ -54,7 +54,6 @@ contentbox {
 }
 
 inputbar {
-  children: [textbox-left, inputbox, textbox-right];
   children: [inputbox];
   background-color:inherit;
   //padding: 10;
@@ -64,30 +63,10 @@ inputbar {
   margin: 0 0 10 0;
 }
 
-textbox-left {
-  content: "";
-  content: "";
-  padding: 0;
-  expand: false;
-  text-color: @bg-entry; 
-  background-color: inherit;
-  font: "Hack Nerd font 30";
-}
-
-textbox-right {
-  content: "";
-  content: "";
-  padding: 0;
-  expand: false;
-  text-color: @bg-entry; 
-  background-color: inherit;
-  font: "Hack Nerd font 30";
-}
-
 inputbox {
   orientation: horizontal;
   children: [prompt, entry];
-  background-color: @bg-entry;
+  background-color: @bg;
   border: 2;
   border-color: @bg-alt;
   border-radius: 10;

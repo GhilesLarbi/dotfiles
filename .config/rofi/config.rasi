@@ -7,10 +7,16 @@ configuration {
   //show-icons: false;
   //fixed-num-lines: false;
   icon-theme: "Papirus-Dark";
+
   kb-accept-entry: "Return,KP_Enter";
   kb-remove-to-eol: "";
-  kb-row-down: "Control-j";
-  kb-row-up: "Control-k";
+  kb-row-up: "Control-k,Up";
+  kb-row-down: "Control-j,Down";
+
+  kb-remove-to-sol: "";
+  kb-clear-line: "Control+u";
+  kb-remove-word-back: "Control+w";
 }
 
 @theme "sidebar"
+// @theme "launcher"

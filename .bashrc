@@ -79,4 +79,5 @@ function prefix_color {
 #pacman-art
 # █                   
 
-export PS1="\n$(prefix_color "FOREGROUND") $(prefix_color "BACKGROUND")\[\e[38;5;236m\]  \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
+export PS1="\n$(prefix_color "FOREGROUND")$(prefix_color "BACKGROUND")\[\e[38;5;236m\]  \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
+#                                        |                                                                                                                                                                                                               |
