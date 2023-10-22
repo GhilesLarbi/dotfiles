@@ -13,6 +13,7 @@ alias ls='ls -AvX --group-directories-first --file-type --color=auto'
 alias ll='ls -gh'
 alias grep='grep --color=auto'
 alias vim='nvim'
+alias vimtutor='nvim -c Tutor'
 alias pacman='sudo pacman'
 alias xclip='xclip -selection clipboard'
 alias feh='feh --geometry 900x600 --scale-down --no-menus -B "#0a0e14"'
@@ -79,5 +80,5 @@ function prefix_color {
 #pacman-art
 # █                   
 
-export PS1="\n$(prefix_color "FOREGROUND")$(prefix_color "BACKGROUND")\[\e[38;5;236m\]  \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
+export PS1="\n$(prefix_color "FOREGROUND")$(prefix_color "BACKGROUND")\[\e[38;5;236m\]  \[\033[00m\]$(prefix_color "FOREGROUND")\[\e[48;5;249m\]\[\e[38;5;236m\] \t \[\033[00m\]\[\e[48;5;249m\]\[\e[38;5;236m\] \w\$(parse_git_branch) \[\033[00m\] "
 #                                        |                                                                                                                                                                                                               |

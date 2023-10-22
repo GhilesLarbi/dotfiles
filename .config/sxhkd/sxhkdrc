@@ -134,7 +134,15 @@ XF86MonBrightnessDown
 
 # toggle gaps
 super + g 
-	~/.config/sxhkd/scripts/bspwm-gap --toggle
+	~/.config/sxhkd/scripts/bspwm-gap toggle
+
+# increase gaps
+super +  equal
+	~/.config/sxhkd/scripts/bspwm-gap increase
+
+# decrease gaps
+super +  minus
+	~/.config/sxhkd/scripts/bspwm-gap decrease
 
 # Show help
 super + slash
@@ -143,6 +151,4 @@ super + slash
 # hide/show polybar
 super + p 
 	~/.config/sxhkd/scripts/polybar-hide
-
-
 

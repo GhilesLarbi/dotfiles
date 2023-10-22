@@ -5,13 +5,14 @@ configuration {
   display-run: "";
   display-window: "󰑣";
   //show-icons: false;
-  fixed-num-lines: false;
+  fixed-num-lines: true;
 }
 
 * {
   bg: #0A0E14;
   bg-alt: #45475A;
   bg-entry: #01060e;
+  background-dim-trans : #45475A55;
 
   fg: #B3B1AD;
   fg-alt: #707880;
@@ -34,8 +35,8 @@ window {
   width: 30%;
   background-color: transparent;
   border: 0;
-  border-color: @bg-alt;
-  border-radius: 0;
+  border-color: @background-dim-trans;
+  border-radius: 10;
 }
 
 mainbox {
@@ -68,7 +69,7 @@ inputbox {
   children: [prompt, entry];
   background-color: @bg;
   border: 2;
-  border-color: @bg-alt;
+  border-color: @background-dim-trans;
   border-radius: 10;
   padding: 16 0 16 0;
 }
@@ -105,7 +106,7 @@ textbox {
 listview {
   spacing: 0;
   border: 2;
-  border-color: @bg-alt;
+  border-color: @background-dim-trans;
   background-color: @bg;
   border-radius: 10;
   padding: 10;
@@ -177,7 +178,7 @@ button {
   text-color: @fg-alt;
   padding: 10;
   border: 2;
-  border-color: @bg-alt;
+  border-color: @background-dim-trans;
   border-radius: 10;
 }
 

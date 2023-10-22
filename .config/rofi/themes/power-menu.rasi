@@ -13,8 +13,8 @@ window {
 	width:10%;
 
 	border: 2;
-	// border-color: @background-dim-trans;
-	border-radius: 0;
+	border-color: @background-dim-trans;
+	border-radius: 10;
 }
 
 inputbar {

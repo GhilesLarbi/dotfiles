@@ -37,11 +37,11 @@ save_state() {
 	echo $1 > $current_bsp_gap_file
 	CURRENT_BSP_GAP=$1
 
-	if [ "$1" -eq 0 ]; then
-		bspc config window_gap 0
-	else
-		bspc config window_gap $DEFAULT_BSP_WINDOW_GAP
-	fi
+	#if [ "$1" -eq 0 ]; then
+	#	bspc config window_gap 0
+	#else
+	#	bspc config window_gap $DEFAULT_BSP_WINDOW_GAP
+	#fi
 }
 
 
@@ -65,13 +65,22 @@ change_gap() {
 	bspc config right_monocle_padding  	-$1	
 }
 
-if echo "$1" | grep -q "^--gap$"; then
+if echo "$1" | grep -q "decrease"; then
+	if [ ! "$CURRENT_BSP_GAP" -lt 2 ] ;then 
+		CURRENT_BSP_GAP=$(($CURRENT_BSP_GAP - 10))
+		save_state $CURRENT_BSP_GAP
+	fi
+
+elif echo "$1" | grep -q "increase"; then
+	if [ ! "$CURRENT_BSP_GAP" -gt 150 ] ;then 
+		CURRENT_BSP_GAP=$(($CURRENT_BSP_GAP + 10))
+		save_state $CURRENT_BSP_GAP
+	fi
+
+elif echo "$1" | grep -q "default"; then
 	save_state $DEFAULT_BSP_GAP
 
-elif echo "$1" | grep -q "^--gapless$"; then
-	save_state 0
-
-elif echo "$1" | grep -q "^--toggle$"; then
+elif echo "$1" | grep -q "toggle"; then
 	if [ "$CURRENT_BSP_GAP" -lt 2 ] ;then 
 		save_state $DEFAULT_BSP_GAP
 	else

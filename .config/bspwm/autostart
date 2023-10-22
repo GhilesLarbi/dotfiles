@@ -42,3 +42,4 @@ exec_once "picom"
 
 #set a wallpaper
 exec_once "feh" --bg-fill ~/.config/bspwm/wallpapers/back1-fix.jpg
+#exec_once "feh" --bg-fill ~/.config/bspwm/wallpapers/back1.jpg

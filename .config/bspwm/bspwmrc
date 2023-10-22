@@ -20,7 +20,7 @@ echo $BSP_WINDOW_GAP > $bsp_window_gap_file
 
 
 #set gaps
-~/.config/sxhkd/scripts/bspwm-gap --gap
+#~/.config/sxhkd/scripts/bspwm-gap toggle
 
 
 
@@ -42,6 +42,7 @@ WHITE=$(xrdb -query | grep "white-clr" | cut -f 2)
 
 
 #set some bsp configs
+bspc config window_gap $BSP_WINDOW_GAP
 bspc config border_width 		  2
 bspc config split_ratio           0.5
 bspc config borderless_monocle    true

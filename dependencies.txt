@@ -1,6 +1,5 @@
 alacritty
 amd-ucode
-arch-wiki-docs
 base
 base-devel
 bash-completion
@@ -8,7 +7,6 @@ bspwm
 cmus
 dash
 efibootmgr
-evillimiter-git
 feh
 ffmpeg
 firefox
